@@ -1,0 +1,93 @@
+.loader8 {
+    --loader-size: calc(var(--block-size) / 3);
+    --anim-duration: 1s;
+    aspect-ratio: 1 / 1;
+    border: 1px dashed var(--invertedNavBar);
+    border-radius: 50%;
+    perspective: 50vmin;
+    transform-style: preserve-3d;
+    transform: rotateX(45deg) rotateY(15deg);
+    --loader-size: calc(var(--block-size) / 2);
+    --loader-size-half: calc(var(--loader-size) / 2);
+    --loader-size-half-neg: calc(var(--loader-size-half) * -1);
+    --light-color: var(--lightVar1);
+    --dot-size: 5px;
+    --dot-size-half: calc(var(--dot-size) / 2);
+    --dot-size-half-neg: calc(var(--dot-size-half) * -1);
+
+    display: block;
+    position: relative;
+    width: var(--loader-size);
+    display: grid;
+    place-items: center;
+    color: white;
+}
+
+.loader8::before,
+.loader8::after {
+    animation: loader-8 var(--anim-duration) cubic-bezier(0.39, 0.24, 0, 0.99) infinite;
+    content: '';
+    position: absolute;
+}
+
+.loader8::before {
+    --z-dist: 8vmin;
+    width: var(--dot-size);
+    aspect-ratio: 1 / 1;
+    background: var(--invertedNavBar);
+    border-radius: 50%;
+    top: calc(50% - var(--dot-size-half));
+    left: calc(50% - var(--dot-size-half));
+    animation-delay: calc(var(--anim-duration) / 4 * -1);
+}
+
+.loader8::after {
+    --z-dist: 4vmin;
+    width: 65%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid var(--invertedNavBar);
+}
+
+@keyframes loader-8 {
+    0%,
+    100% {
+        transform: translateZ(calc(var(--z-dist) * -1)) scale(0.6);
+    }
+
+    55% {
+        transform: translateZ(var(--z-dist));
+    }
+}
+
+.loadingBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+
+    i {
+        display: grid;
+        width: 90px;
+        height: 90px;
+    }
+}
+
+.loaderHolder {
+    width: 75px;
+    height: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    display: block;
+    position: relative;
+}
+
+.loadingSmall {
+    width: max-content;
+    height: max-content;
+    margin-right: auto;
+    margin-left: auto;
+}
